@@ -1,0 +1,129 @@
+<h1> Data Science Pipeline </h1>
+
+<p>Machine Learning is a subset of AI. ML is sometimes a part of Data Science.
+<br>
+T-Test, compare two data types (Apples vs Oranges, in a y:size, x: price) to see if there is a difference between the classes.
+Can use Categorical in a Regression type.</p>
+<br>
+<h5> What is T-Test and what is it for?</h5>
+<p>The statistical question you are asking is are these two groups from the same population?</p>
+<br>
+<p>A test comparing means can help us answer questions like:
+<ul>
+<li>Are the salaries of the marketing department higher than the company average?</li>
+<li>Do customers who receive marketing emails spend more money than customers who do not receive marketing emails?</li>
+<li>Are sales for product A higher when we run a promotion for it than when we do not run a promotion for it?</li>
+</ul></p>
+<br>
+<p> Feature : Any independent variable that leads to outcome (x)</p>
+<ul>Interchangeable terms for it:
+<li>Independent Variable</li>
+<li>Feature</li>
+<li>x</li>
+</ul>
+<p> Target: The dependent variable that is the outcome. (y)</p>
+<ul>Interchangeable terms for it:
+<li>Dependent Variable</li>
+<li>Target</li>
+<li>y</li>
+</ul>
+<p> Dummy Variables</p>
+<p>The 0 in the following chart:
+Apples | Oranges
+   1   |    0
+   1   |    0
+   0   |    1
+   1   |    0
+   0   |    1
+   0   |    1
+   </p>
+   
+   *\ Really the HTML coding is just... to keep my attention, and it really just seems wrong to not have SOME type of code in this.
+   
+   <h3> Demo </h3>
+   <p>
+   Matplotlib is a visualization lib
+   we will use it to make plots
+   numpy is a vectorised matrix manipulator
+   matrix:
+   list1 = [0,1,2,3,4]
+   list1Matrix = [[0,1,2,3,4],[33,67,88,89,77]]
+   Numpy, mathmatical backbone, Pandas makes it more human readable (turns it into "Excel on Steroids")
+   pandas built on top of numpy for tabular manipulation
+   Seaborn is another visualisation lib, built on matplot
+   <br>
+   To add : import {lib name: numpy, pandas, etc} (as {what you want to use to call it ex: import numpy as np -> np.use() }) <-optional but useful)
+   <br>
+   import re (regex for text manipulation)
+   <br>
+   from sklearn.model_selction import train_test_split (get train/text split from sklearn for data set holdouts)
+   from sklearn.tree import DecisionTreeClassifier, plot_tree (Get our Machine Larning Algorithm set up)
+   <br>
+   import env (grab our environment file)
+   
+   Quick not about formatted strings:
+   string2 = 'this string here {what you want it to say}'
+   print(string2)
+   would return : this string here what you want it to say
+   
+   Triple quotes makes a multiline string that retains the line breaks
+   someString1= 'this
+   is
+   some text'
+   ^ will break
+   someString2 = '''this
+   is
+   some text'''
+   print(someString2)
+   would return :
+    this
+    is
+    some text
+   
+   "df" means Data Frame
+   We have a way to find true missing values pretty easily:
+   a non-value will be reffered to as a null or NaN
+   
+   df.isnull().sum() <-- calls for the total of each Null in the Data Frame
+   
+   Hidden Nulls:
+   What do we do if we have entries that are just a blank string
+   ex: ''
+   
+   Fixing Empty String when trying to convert string values into float:
+   define a function called parse total charges
+   it will:
+   find anything that is not formatted like a number,
+   replace the empty string with a null
+   ^: starts with
+   $: ends with
+   \d : number type characgters
+   (): optional group
+   \. : period with an escape indictation that is is a period
+   + : one or more
+   s is being used as input
+   
+  def parse_total_charges(s):
+    if re.search(r'^\d+(\.\d+)?$', s):
+        return float(s)
+    else:
+        print(f'"{s}" is not a numeric value! Replacing with null...')
+        return np.nan
+        
+    Calling function
+      df.total_charges = df.total_charges.apply(parse_total_charges)
+    Returns:
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+      " " is not a numeric value! Replacing with null...
+
+
+   
