@@ -1,0 +1,39 @@
+# Commands same as for Lorekeeper back end.
+
+# Useful things
+
+# TERMS
+# pwd : Print Working Directory
+# cd : Change Directory
+  # -syntax:
+    # - . : here
+    # - .. : back one (level)
+    # - ~ : Home
+# ls: list
+  #shows items in directory ( Files with . in front are hidden files)
+  #ls -d */ : lists all directories in your working directory
+# man : Manual
+  # can use to get documentation on any commands. (Ex: man ls)
+  # exit man page with q  
+# * : is wildcard, does all entries, so  if you do ls * it will return all your files. 
+# mkdir : Makes directory (Everything lowercase_underscore_for_space)
+# touch : Makes a file into existance (EX: touch file.txt -Makes a text file)
+# vim : opens a text editor (EX: vim file.txt)
+  # - i : goes into INSERT mode (aka: text editor)
+  # - wq : saves and quits
+  # - q : quits without saving
+# cat : shows view inside a file (EX: cat file.txt)
+# rm : removes a file ******VERY PERMANENT*******
+  # rm -r : removes directory and everything in it ****VERY PERMANENT****
+# mv : moves a file (EX: mv file.txt ..  or mv file.txt ./documents/)
+  # mv file.txt ./documents/file_better.txt   Moves and Changes file name
+  # mv file.txt file_better.text    Changes file name
+# cp : Makes a Copy (EX: cp file.txt ..) will put a copy of file.txt back one directory and keep the current one in it's place.
+
+
+
+# KEYBOARD INTERRUPT for a program running that you need to exit: CTRL + C
+# If you're filing in a directory and there is only one directory it could be, use TAB and it will fill in the rest. If you have more options, it will list the options and you can type more to get so it's only one directory before tabbing again.
+# ***IF YOU DELETE SOMETHING VIA COMMAND LINE IT'S GONE FOREVER***
+
+
