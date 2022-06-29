@@ -1,0 +1,20 @@
+# Standard Libararies
+# Collections
+# collections.OrderedDict
+# NOTE: *NOT* the same as a sorted order!
+# collections.OrderedDict gives you a dict that will preserve the order in which items are added to it.
+# Examples of Usefulness: processing lines in a file where the lines (or something within them) maps to other data. A mapping is the right solution and you often need to produce results in the same order in which the input data appeared.
+
+#Examples of how ordering changes with a normal dict:
+      dict(zip(ascii_lowercase, range(4)))
+      {'a':0, 'b':1, 'c':2, 'd':3}
+      
+      dict(zip(ascii_lowercase, range(5)))
+      {'a':0, 'b':1, 'c':2, 'd':3, 'e':4}
+      
+      dict(zip(ascii_lowercase, range(6)))
+      {'a':0, 'b':1, 'c':2, 'd':3, 'f':5, 'e':4}
+# Looking for sorted container types? Excellent sorted container package (http://bit.ly/sorted-cont) has high-performance sorted versions of the ist, dict, and set datatypes.
+      
+            dict(zip(ascii_lowercase, range(7)))
+      {'a':0, 'b':1, 'c':2, 'd':3, 'g':6, 'f':5, 'e':4}
