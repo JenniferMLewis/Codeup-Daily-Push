@@ -1,5 +1,7 @@
 # Standard Libararies
+
 # Collections
+      #Collections has a few tricks up it's sleeve not covered here, your time is well spent brushing up on it's documentation (http://bit.ly/coll-docs). There is a Counter class for easily counting occurrences, a list-like container for effectively appending and removing items from either end (deque), and several helper classes to make subclassing lists, dicts, and strings easier.
 
 # collections.OrderedDict
 # NOTE: *NOT* the same as a sorted order!
@@ -59,11 +61,44 @@
 # In the preceeding examples, we're saying that every new element, by default, will be an empty list. If, intstead, you wanted eery new element to contain a diction, you might say defaultdict(dict).
 
 # collections.namedtuple
+# (Side note: Tuples are the data in () like ("apple", "banana", "banana", "orange", "apple") and are unchangable, ordered, and allow duplicates. They're also indexed [0] - [-1])
 # collections.namedtuple is "magic in a bottle", instead of working like this:
       tup = (1, True, "red")
 # You get to work with this:
+      from collections import namedtuple
+      A = namedtuple('A', 'count enabled color')
+      tup = A(count=1, enabled=True, color="red")
+      tup.count
+      1
+      tup.enabled
+      True
+      tup.color
+      "red"
+      tup
+      A(count=1, enabled=True, color='red')
+# The best thing about namedtuple is that you can add it to existing code and use it to progressively replace tuples: it can appear anywhere a tuple is currently being used, without breaking existing code, and without using any extra resources beyond what plain tuples require.
+# Using namedtuple incurs no extra runtime cost, and can make code much easier to read.
+# The most common situation where a namedtuple is recommended is when a function returns multiple results, which are then unpacked into a tuple.
+#Let's look at an example of code that uses plain tuples, to see why such code can be problemmatic:
+      def f():
+            return 2, False, "blue" #simple function returning a tuple
+      count, enabled, color = f() #when the function is evaluated, the results are unpacked into separate names.
       
+      tup = f() #Worse, the caller might access the values inside the returned tuple *by index*
+      enabled = tup[1]
 
-
+# The problem with this approach is that this code is fragile to future changes. If the function changes (perhaps by changing the order of the returned items, or adding more items), the unpacking of the returned value will be incorrect.
+# Instead, you can modify *existing* code to return a namedtuple instance:
+      def f():
+            #return a namedtuple!
+            return A(2, False, "blue")
+      count, enabled, color = f() #even though our function now returns a namedtuple, the same calling code still works!
+# You now also have the option of working with the teturned namedtuple in the calling code:
+      tup = f()
+      print(tup.count) #being able to use attributes to access data inside the tuple is much safer rather than relying on indexing alone; if future changes in the code added new fields to the namedtuple, the tup.count would continue to work.
       
+#contextlib
+      #A context manager is what you use with the -with- statement. A very common idiom in Python for working with file data demonstrates the context manager:
       
+            with open('data.txt', 'r') as f:
+                  data = f.read()
