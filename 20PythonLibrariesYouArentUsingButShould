@@ -1,8 +1,10 @@
 # Standard Libararies
 # Collections
+
 # collections.OrderedDict
 # NOTE: *NOT* the same as a sorted order!
 # collections.OrderedDict gives you a dict that will preserve the order in which items are added to it.
+#  !!Looking for sorted container types? Excellent sorted container package (http://bit.ly/sorted-cont) has high-performance sorted versions of the ist, dict, and set datatypes.
 # Examples of Usefulness: processing lines in a file where the lines (or something within them) maps to other data. A mapping is the right solution and you often need to produce results in the same order in which the input data appeared.
 
 #Examples of how ordering changes with a normal dict:
@@ -14,7 +16,54 @@
       
       dict(zip(ascii_lowercase, range(6)))
       {'a':0, 'b':1, 'c':2, 'd':3, 'f':5, 'e':4}
-# Looking for sorted container types? Excellent sorted container package (http://bit.ly/sorted-cont) has high-performance sorted versions of the ist, dict, and set datatypes.
+
+# See how the key "f" now appears before the "e" key in the sequence of keys? They no longer appear in the order of insertion, due to how the dict internals manage the assignment of hash entries.
       
-            dict(zip(ascii_lowercase, range(7)))
+      dict(zip(ascii_lowercase, range(7)))
       {'a':0, 'b':1, 'c':2, 'd':3, 'g':6, 'f':5, 'e':4}
+
+#The OrderedDict, however, retains the order in which items are inserted:
+
+  from collections import OrderedDict
+  
+      OrderedDict(zip(ascii_lowercase, range (5)))
+      OrderedDict([('a', 0), ('b', 1), ('c', 2), ('d', 3), ('e',4)])
+      
+      OrderedDict(zip(ascii_lowercase, range (6)))
+      OrderedDict([('a', 0), ('b', 1), ('c', 2), ('d', 3), ('e',4), ('f', 5)])
+      
+      OrderedDict(zip(ascii_lowercase, range (7)))
+      OrderedDict([('a', 0), ('b', 1), ('c', 2), ('d', 3), ('e',4), ('f', 5), ('g', 6)])
+      
+# WARNING: OrderedDict doesn't work when you Create the OrderedDict with Keyword Arguments:
+      collections.OrderedDict(a=1,b=2,c=3)
+      OrderedDict([('b',2), ('a',1), ('c',3)])
+      
+      # This inability seems like a bug, but it happens because the keyword arguments are first processed as a normal dict before they are passed on to the OrderedDict.
+
+
+# collections.defaultdict
+# collections.defaultdict is another special-case dictionary: it allows you to specify a default value for all new keys.
+# Here's a Common Example:
+      d = collections.defaultdict(list)
+      d['a']
+      []
+    # You didn't create this item yet? No problem! Key lookups automatically create Values using the function provided when creating the defaultdict instance.
+# By setting up the default value as the list constructor in the preceeding example, you can avoid wordy code that looks like this:
+      d = {}
+      for k in keydata:
+            if not k in d:
+                  d[k] = []
+            d[k].append(...)
+# The setdefault() method of a dict can be used in a somewhat similar way to initialize items with defauts, but defaultdect generally results in clearer code.
+# In the preceeding examples, we're saying that every new element, by default, will be an empty list. If, intstead, you wanted eery new element to contain a diction, you might say defaultdict(dict).
+
+# collections.namedtuple
+# collections.namedtuple is "magic in a bottle", instead of working like this:
+      tup = (1, True, "red")
+# You get to work with this:
+      
+
+
+      
+      
