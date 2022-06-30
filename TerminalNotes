@@ -36,4 +36,18 @@
 # If you're filing in a directory and there is only one directory it could be, use TAB and it will fill in the rest. If you have more options, it will list the options and you can type more to get so it's only one directory before tabbing again.
 # ***IF YOU DELETE SOMETHING VIA COMMAND LINE IT'S GONE FOREVER***
 
-
+#Quicker way to connect Git hub to empty repository:
+  #git clone git@github.com:[username]/[repo_name].git
+  #Asks for passcode, then you have repository.
+  #Nav to the Repo_name folder
+  #Vim to add readme.md.
+  #Put info in Readme and wq to save and exit.
+  #Can Cat readme.md to check data in readme.
+  #git add readme.md
+  #git status <-- tells you files are staged, not pushed.
+  #git commit -m '-m is commit message! Add it like this comment is.'
+  #git status <-- shows file no longer anywhere because it's been commited.
+  #git push <-- Favourite command, all the things are pushed to the remote git! Yay New code/features!
+  
+  #gitignore, create via vim .gitignore
+  #insert name of file to be ignored\j
