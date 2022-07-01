@@ -1,0 +1,65 @@
+-- Is how we make comments in MySQL
+
+-- I want to see the sections in the LIbrary
+--the sections are what we may describe as schema, or database.alter
+
+--Case isn't mandatory, BUT is consider good protocol, please use it.
+
+SHOW DATABASES;
+--We can see our Databases, remember your Semi-colon, think of it like PHP, you NEED it.
+
+SELECT * FROM mysql.user;
+-- Select Everything
+-- From database/schema mysql
+-- From table user
+
+--How to see what's in a DB
+--In CLI, we would change directories into our location (cd), we would list contents (ls)
+--In MySQL
+
+USE mysql;
+--Command Line Interface (CLI) equivelant cd
+
+SHOW TABLES;
+--CLI equivelant ls
+--Since we're in mysql db, we can just use
+SELECT * FROM user;
+
+-- I got lost in the Library, where am I?
+SELECT database();
+-- Will return which database you're currently in.
+
+SHOW CREATE DATABSE fruits_db;
+-- I want to know details about creations of fruits-db
+-- SHOW command
+-- the details of the create command
+-- for the database (schema) fruits_db
+
+SHOW DATABASES;
+USE chipotle;
+SHOW TABLES;
+--Structure of a MySQL Database:
+-- inside the database exists a Schema (databases)
+--these databases provide a structure for tables
+
+--Tables:
+SELECT * FROM orders LIMIT 5;
+
+-- So what's in a table?
+--each cell of data in a table is exactly that: data
+--each piece of datum has an inherent type
+-- that type defines how it can interact and if it can belong in that field
+-- interchangable terms in sq: columns and fields
+
+--Tables in sql have some very specific rules about how they are created:
+-- Firstly, they must contain a primary key
+-- Null (No entered Value, different from NaN and 0)
+-- nan (Not A Number)
+-- primary keys have to be unique, can't be null, and there can be one
+
+SHOW CREATE TABLE orders;
+--shows command utilised to created that specific table, will show the specific code to create each value
+-- signed vs unsigned - the use of the word sign is meaning mathmatically. Unsigned is only 0 to 4,294,967,295 Signed -2,147,483,648 to 2,147,483,647
+-- Boolean 0 is False 1 is True. MySQL has no native support for boolean values, it uses TINYINT data type that goes from -128 to 127 and treats 0 as False and 1 as True. Other database management systems will vary in how they ahndle boolean values.
+
+DESCRIBE orders;
