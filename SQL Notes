@@ -63,3 +63,76 @@ SHOW CREATE TABLE orders;
 -- Boolean 0 is False 1 is True. MySQL has no native support for boolean values, it uses TINYINT data type that goes from -128 to 127 and treats 0 as False and 1 as True. Other database management systems will vary in how they ahndle boolean values.
 
 DESCRIBE orders;
+
+
+
+-- CRUD
+-- Create, Read, Update, Delete
+-- DDL: Data Definition Language: Create, Update, Delete
+-- DML: Data Manipulations Language: Read! <-- Our bread and butter?!
+
+-- SELECT is the primary read statement that we will be using
+
+-- SELECT (bring me information)
+-- __subject__ (field names, computations, * , etc.)
+-- FROM (what table do you want this informatoin from is it from a table?)
+-- __source__ (either with a dot notation or living inside of a schema ie: database.table or just table)
+
+SHOW DATABASES;
+
+--SELECT (*: every field) FROM the schema named chipotle, and the table named orders inside chipotle.
+/* dslkajflskdjf
+comments
+out
+Multiple
+Lines */
+-- CMD + / Will comment out a line in SQL and Python!
+SELECT * FROM chipotle.orders;
+
+-- seclect only specific fields?
+SELECT name FROM fruits;
+-- more than one?
+SELECT id, name FROM fruits;
+USE chipotle;
+SELECT * FROM orders;
+
+-- Want something specitic??
+-- Give me everything in the Fruits table where the name field matches the string Mango
+SELECT * FROM fruits WHERE name = 'mange';
+-- DISTINCT will give us unique values in a field
+SELECT DISTINCT name FROM fruits;
+SELECT DISTINCT name, quantity, FROM fruits;
+SELECT * FROM fruits WHERE quantity > 2;
+SELECT * FROM fruits WHERE quantity >= 2;
+
+/* comparison operators:
+= equals
+!= Not equal, <> Not equal
+< Less than
+> Greated than
+<= Less than or equal to
+>= Greater or and equal to
+BETWEEN __value1__ AND __value2__ greater than (up to value2) or equal to value1, AND less than (up to value1) or equal to value2. */
+
+SELECT 'this is some output!';
+-- functions like Print()
+SELECT 2=2;
+-- Will return 1, boolean meaning TRUE
+SELECT 2=3;
+-- Will return 0, boolean meaning FALSE
+SELECT 2+3;
+-- Will return SUM of 2 and 3, so 5
+SELECT 2=2, 2+3, 2 BETWEEN 3 AND 5;
+-- Will return 1 | 5 | 0 <--- Boolean | SUM | boolean
+
+-- aliasing:
+SELECT 2=2 AS 'equivalency_demo';
+-- Or
+SELECT 2=2 AS equivalency_demo;
+
+SELECT name AS fruit_type FROM fruits;
+-- Makes a list of fruit_names into the table fruit_type so you don't have to keep referencing the long way
+
+/* Can do More Exercises from SQL if feeling ahead. */
+
+
