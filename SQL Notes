@@ -135,4 +135,85 @@ SELECT name AS fruit_type FROM fruits;
 
 /* Can do More Exercises from SQL if feeling ahead. */
 
+-- % is the wildcard for data entries, not * . So items would be wildcarded like '%vague_idea%'. It would give "This_is_a_vague_idea" or "I_only_have_vague_ideas" or "vague_ideas_not here".
+
+--Clauses:
+--Clauses are how we get specifically what we want(usually a single gield or a combination of fields)
+
+-- WHERE: Give me results specifally under X conditions
+
+-- ORDER BY: Sort my results specifally to my needs
+
+-- LIMIT: Only give me some of the results back
+
+-- SHOW me what database/schemas I have available
+SHOW DATABASES;
+-- USE the chipotle schemas
+USE chipotle;
+-- SHOW what tables are available inside the chipotle database.
+SHOW TABLES;
+-- tell me what fields I have inside the orders table.
+DESCRIBE orders;
+
+-- A good way to get a preview on our table:
+-- LIMIT
+SELECT * FROM orders LIMIT 5;
+-- Gives a hard stop after the first 5 entries.
+
+-- If I want to narrow down results we can use WHERE
+-- WHERE comes at the end of a select statement, and it calls:
+
+-- A few differe ways to use this so far:
+-- We need to specify what we want to narrow down.
+-- Establish dquivalency : = 
+-- LIKE, compare string values
+-- BETWEEN, inclusive range
+-- inequality operators: <,>,<=,>=
+-- NOT EQUAL , != or <>
+
+-- Give me everything in orders
+-- specifically, everthis that has a tomato in the item name
+SELECT * FROM orders WHERE item_name LIKE '%tomato%';
+-- Just the distinct entries with tomato in their name.
+SELECT DISTINCT item_name FROM orders WHERE item_name LIKE '%tomato%';
+
+
+/* STRUCTURE:
+SELECT - Do the things, pull the info
+WHAT everything: * , some specific fields, some way of sorting data
+At a Specific Field (DISTINCT)
+FROM - Where this is coming from
+Stipulations? Do we want a *clause* to narrow this information down?
+
+Use a numerical comparision:
+Give me every choice_description, \  
+But only if there was more than 3 ordered */
+SELECT choice_description FROM orders WHERE quantity > 3;
+--alternatively?
+SELECT
+choice_description AS choice
+FROM orders
+WHERE quantity > 3
+AND choice_description <> 'nan';
+
+-- Nesting: Can keep nesting, order is in the way it's written so it will run as you want to narrow down if written that way.
+SELECT *
+FROM orders
+WHERE quantity > 2
+AND (
+item_name LIKE '%tomato%'
+OR choice_description LIKE '%rice%'
+);
+
+ORDER BY: How we sort our results
+SELECT *
+FROM orders
+Where quantity > 2
+AND (
+item_name LIKE '%tomato%'
+OR choice_description LIKE '%rice%
+ORDER BY quantity DESC
+);
+
+-- LIMIT and OFFSET. LIMIT is how many items will show up at a time, OFFSET then tells it WHERE in the entries you wan to start.
 
