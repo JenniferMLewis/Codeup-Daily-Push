@@ -217,3 +217,79 @@ ORDER BY quantity DESC
 
 -- LIMIT and OFFSET. LIMIT is how many items will show up at a time, OFFSET then tells it WHERE in the entries you wan to start.
 
+
+-- FUNCTIONS:
+-- FULL LIST: https://dev.mysql.com/doc/refman/8.0/en/functions.html
+__ NOTEABLY, in SQL index count starts at [1] not [0] like Python.
+
+-- CONCAT
+-- SELECT CONCAT ('Hello ', "Codeup', '!');
+-- CONCAT will combine the values to give you "Hello Codeup!"
+
+-- FUNCTIONS: STRING FUNCTIONS:
+SELECT CONCAT('hi', 'leavitt');
+SELECT CONCAT('hi', 'leavitt') AS simplegreeting;
+
+-- If I wanted a full name field
+-- concatenate first_name withlast_name, add a space between them.
+SELECT CONCAT(first_name, ' ', last_name
+AS fullname
+FROM employees LIMIT 5;
+
+-- substrings:
+SELECT SUBSTR('Howdy Leavitt', 2, 6);
+-- gives "owdy L"
+
+-- nesting:
+SELECT
+CONCAT(
+SUBSTR(first_name, 1, 1), ' ' , last_name)
+FROM employees
+
+-- UPPER and LOWER:
+SELECT UPPER (first_name) FROM employees;
+
+-- REPLACE
+SELECT REPLACE('Hey $$$$, '$', 'Leavitt');
+-- gives Hey LeavittLeavittLeavittLeavitt
+SELECT REPLACE('Hey $$$$, '$$$', 'Leavitt');
+-- gives Hey Leavitt$
+
+-- Time Functions:
+-- Useful for compartion
+SELECT NOW();
+-- Gives GMT
+SELECT UNIXTIMESTAMP(NOW())
+-- Gives seconds
+
+-- MATH functions:
+-- We an use these within previous clauses for efficiency
+
+SELECT * FROM employees LIMIT 5;
+SELECT MIN(emp_no) FROM employees;
+
+SELECT * FROM employees WHERE emp_no = MIN(emp_no);
+-- This BREAKS it, we will cover how to handle this later.
+
+-- CASTING: turn one data type into another
+
+USE chipotle;
+SELECT * FROM orders LIMIT 5;
+
+-- WHEN utilising CAST, we separate the arguments with AS
+-- think about it the same way as aliasing
+CAST('5.99' AS FLOAT);
+
+SELECT REPLACE('$5.99', '$', '');
+
+-- Let's nest these to solve our earlier discussed problem:
+SELECT item_price FROM orders;
+SELECT REPLACE(item_price, '$', '') FROM orders;
+SELECT CAST(REPLACE(item_price, '$', '') AS float) FROM orders;
+
+
+
+
+
+
+
