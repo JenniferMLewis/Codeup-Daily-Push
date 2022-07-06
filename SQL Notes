@@ -288,6 +288,183 @@ SELECT REPLACE(item_price, '$', '') FROM orders;
 SELECT CAST(REPLACE(item_price, '$', '') AS float) FROM orders;
 
 
+-- GROUP BY: An Introduction to Aggregation
+
+-- select our schema
+USE chipotle;
+-- look at whats in the table:
+SHOW TABLES;
+DESCRIBE orders;
+-- string types in fields: item_price, choice_description, item_name
+-- num types: id (pk), order_id, quantity
+
+-- Previous use-case: DISTINCT
+-- Let me get every unique item name in this table of orders
+SELECT
+DISTINCT item_name
+FROM orders;
+
+SELECT
+DISTINCT item_name,
+quantity
+FROM orders;
+
+-- some redundancy here:
+-- GROUP BY on its own
+
+SELECT item_name FROM orders GROUP BY item_name;
+
+-- GROUP BY with two columns:
+-- note that this is replicant of using DISTINCT with two fields
+-- every unique combination of those two fields
+SELECT item_name,
+quantity
+FROM orders 
+GROUP BY item_name, quantity;
+
+-- first use-case of aggregative functions 
+-- in conjunction with GROUP BY
+
+-- Flexability:
+-- When using count inside of your aggregate call,
+-- we can use different field names.  It will consistently
+-- give you the number of instances the grouped field contains
+-- it will be common to see COUNT(*), i.e. count all instances of all fields
+SELECT item_name,
+COUNT(item_name)
+FROM orders 
+GROUP BY item_name;
+
+-- Adding complexity with a WHERE clause:
+SELECT item_name,
+COUNT(item_name)
+FROM orders 
+WHERE item_name LIKE '%burrito%'
+GROUP BY item_name;
+
+-- Adding more:
+SELECT item_name,
+COUNT(item_name) AS num_orders
+FROM orders 
+WHERE item_name LIKE '%burrito%'
+GROUP BY item_name
+HAVING num_orders > 6
+ORDER BY num_orders DESC
+LIMIT 1;
+
+-- SELECT the thing (what fields we want)
+SELECT item_name, item_price,
+-- if we are not grouping by a secondary field, what do with it
+MAX(quantity) AS max_num_ordered
+-- from what table are we pulling from?
+FROM orders
+-- Do we need a WHERE to narrow scope with a clause?
+WHERE item_name LIKE '%veggie%'
+-- for all grouped fields, specify order
+GROUP BY item_name, item_price
+-- do we want to narrow down our aggregated function value with a HAVING?
+HAVING max_num_ordered > 1
+-- do we have an order to sort by?
+ORDER BY max_num_ordered DESC
+-- do we have a limit to the number of fields we want?
+LIMIT 2;
+
+
+-- JOIN:
+-- INNER joins:
+-- Inner Joins will be our default join structure.
+
+SELECT *
+-- from users as the left table
+FROM users
+-- join all fields (*)
+JOIN roles
+-- how do we want to make that connection?
+ON users.role_id = roles.id;
+
+-- How do we select specific fields?
+SELECT users.name, roles.name, role_id
+-- from users as the left table
+FROM users
+-- Join all fields(*)
+JOIN roles
+-- How do we want to make that connections
+ON users.role_id = roles.id;
+
+-- How do we select specific fields?
+-- WE CAN ALSO ALIAS WHAT WE WANT TO DO WITH SPECIFIC TABLES
+SELECT u.name, r.name, role_id
+-- from users as the left table
+FROM users AS u
+-- Join all fields(*)
+JOIN roles AS r
+-- How do we want to make that connections
+ON u.role_id = r.id;
+
+-- LEFT/RIGHT joins?
+-- BASIC LEFT JOIN COMMAND
+
+SELECT * 
+FROM users u
+LEFT JOIN roles r
+ON r.id = u.role_id;
+
+-- RIGHT JOIN?
+SELECT *
+FROM users u
+RIGHT JOIN roles r
+ON r.id = u.role_id;
+
+/*BIG NOTE: LEft and Right joins are the same thing,
+it just depends on what order you put your tables inside of your query
+In this case, role is our left table denoted by the first thable refered our FROM command
+FOLLOWING JOIN, wather econd table there is our right table */
+SELECT * 
+FROM roles r 
+RIGHT JOIN users u 
+ON r.id = u.role_id;
+
+-- Let' explore a different schema:
+-- select a new schema using USE
+USE world
+-- Let's see what tables are in here using SHOW TABLES
+-- Looks like city, country, and countrylanguage
+SHOW TABLES;
+
+DESCRIBE city;
+-- CountryCode appears to link
+-- ID is our primary key
+-- Other fields: Name, District, Population
+SELECT * FROM city LIMIT 2;
+
+DESCRIBE country;
+SELECT * FROM country LIMIT 2;
+
+SELECT * FROM countrylanguage LIMIT 2;
+-- ALL 3 tables have an association with CountryCode
+
+-- SELECT all fields (from all tables)
+SELECT *
+-- first table: city
+FROM city
+-- join it on the country table
+JOIN country
+-- how do we want to link these two tables?
+ON city.CountryCode = country.Code
+-- make our second join : attach countrylanguage
+JOIN countrylanguage
+-- How do we want to associate countrlanguage to country?
+ON country.Code = countrylangauge.CountryCode;
+
+-- USING:
+-- WE NEED TO USE THER KEYWORD ON WHEN ESTABLISHING EQUIVALENCE BETWEEN TWO TABLES
+-- with different foreign/primary key pair value names
+-- but: IF they have the same field name, we can elect to use USING()
+
+SELECT *
+FROM city
+JOIN countrylanguage
+USING(CountryCode);
 
 
 
