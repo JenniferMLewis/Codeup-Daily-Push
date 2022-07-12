@@ -5,3 +5,89 @@ becomes
 
 Python is VERY case sensitive and formatting (indent and the like) sensitive.
 
+using VAR.strip() will remove whitespace so  "   hi!    ".strip() will give you "hi!"
+So you can check for white space with VAR == VAR.strip() if False, there is whitespace.
+
+Escape out in a line \
+Escape out in a string \n
+Escape out = means removing formatting (of sorts) in this case means we can continue on the next line without issue
+ex: 'yes it\'s tuesday' will give you yes it's tuesday
+
+
+
+CONTROL STRUCTURES:
+Dictate /what/ your code does depending on different conditions. They are essential for creating code with any type of robustness or flexibility.
+
+Today's control structures:
+- Conditionals: A condition outlines where the code should go next based on a condition. Just liek we utilised clauses such as WhERE in SQL, in the riverflow of a python script we can veer into different canals with our primary tool of the IF statement
+- Loops: A Loop, congruently similar in it's naming convention, continues to go through until all conditions are met.
+
+If Statements: if condition: do thing
+                else: do different thing
+          or 
+                if condition: do thing
+                elif condition 2: do a different thing
+                can continue on as needed with more elif
+                else: do this thing instead
+                
+Loops: For and While
+While does until a condition is no longer valid
+For does for everything
+      for i* in itr*: do a thing
+      * i and element in itr
+      * itr and iterable
+      
+      n in range (10)
+      0,1,2,3,4,5,6,7,8,9 Where each eleiment is an n during the loop
+      
+      for i in [apple, pear, banana]
+      i runs conditions for each value individually.
+      
+ While condition*: do thing (until condition is False)
+ * YOU HAVE TO CREATE A BREAK IF NOT IT WILL GO ON TO INFINITY AND BEYOND
+  - Make sure you alter the condition inside the loop
+  -- if the condition reads true everytime the loop cycles, it will never stop.
+  
+  # If statements:
+  # If True, do thing.
+If True:
+  print('hi!')
+  
+If False:
+  print('hi!')
+-- Will print only the top one, since nothing is True?
+  # else, elif:
+  # If the parameters of my first things don't work, do another thing
+is_tuesday = True
+
+if is_tuesday:
+  print("Yes, it's tuesday!")
+else:
+  print("Boring Day"
+  
+today = 'tuesday'
+
+if today == 'tuesday':
+  print("Yes, it's tuesday!")
+elif today == 'friday' or today == 'saturday' or today == 'sunday':
+  print("Yay!")
+else:
+  print("Boring Day")
+  #Can add more if
+today = 'tuesday" second_thing = "nearly five"
+if today == 'tuesday':
+  print("Yes, it's tuesday!")
+elif today == 'friday':
+  print("Friyay!")
+if second_thing == "nearly five"
+  print("go home!")
+elif today == 'saturday' or today == 'sunday':
+  print("Yay!")
+else:
+  print("Boring Day")
+ -- Will return Yes, it's tuesday! go home!
+  
+
+ 
+ 
+ 
