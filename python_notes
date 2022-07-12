@@ -1,0 +1,7 @@
+f-string :  informs Python that the string is formatted and will run anything inside the curly brackets
+f'3 + 4 is {3 + 4}'
+becomes
+"3 + 4 is 7"
+
+Python is VERY case sensitive and formatting (indent and the like) sensitive.
+
