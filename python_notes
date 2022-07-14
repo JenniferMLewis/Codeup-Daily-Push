@@ -158,4 +158,10 @@ def function_name():
          else:
           print('What even are you??')
           return z
- 
+          
+          
+ LAMBDA:
+  lambda functions: do something quick if we are going to use it once (so 'single-use*' shorthand definition) *can be used more than once, but make a def if using a lot.
+    lambda x: x+1
+    # structually -   x: thing we are feeding into the function, colon: instructions for that thing (the arguement X), the expression we want acted upon x.
+    # for this. Lambda takes x, and add one.
