@@ -89,5 +89,73 @@ else:
   
 
  
- 
+ VOCAB
+ ---------
+ calling/invoking: Executing a function.
+    ? after a function name gets the docstring help(function) gets more documentation about the function
+        ex: len?
+            help(len)
+    invoking a function invloves adding () to the end of it.
+    any given function may or may not have required arguements with it.
+    
+Arguments and Parameteres:
+    Nuianced Difference
+      Arguement: item being fed into the parenthesis (when the function is being called)
+        ex: len('Hello') ---> Hello is arguement
+      Parameters: The thing being defined into the function that will be called when we use the function as a paramater (think lava/magma situation)
+Methods: functions that exist as a ((Will get back to this, screen has scrolled.))
+
+def function_name():
+    print('Hello, World!')
+    ****FUNCTIONS HAVE TO HAVE A RETURN****
+    
+    ex: def increment(n):
+          return n+1
+  Function ends once it hits a Return.
+  ** WRITING A DOCSTRING for your function: 
+  '''
+  my_extra_stuff:
+  parameteres: x, a numtype variable
+  return x, a version of x incremented by 10
+  '''
+  *************** ALWAYS DOCUMENT YOUR FUNCTIONS, DON'T TRUST YOURSELF TO REMEMBER WHAT YOU DID YESTERDAY, LET ALONE DAYS OR WEEKS AGO, AND HELP OTHERS OUT.
+  
+  
+  Keyword arguments(kwargs) vs positional arguements
+    Keyword have a default type, Keyword are optional input
+    Positional is required input
+    
+    ex: def useless_funct(x, y='hello leavitt'):
+#        x is positional, y is keyword
+            if y == 'hello leavitt':
+              print('ah, it's so good to see you')
+            return x
+            
+          useless_funct(8) fills in 8 for x and y is still default
+          useless_funct(8, y='hey') <-- good idea to reference keyword arguments, but it can function as (8, 'hey')
+  
+  POPQUIZ
+    def popquiz(y=8):
+        return y
+        y += 2
+        return
+        ---REMEMBER: Stops at first return---
+    
+      def multi_return(y=8):
+        y -= 6
+        hello_leavitt == "hi!'
+        return y, hello_leavitt
+        ----returns two results, as a tuple)
+      
+      def if_returns(x, y=8)
+        x+y = z
+        if z % 2 == 0:
+          print('You made an even number!')
+          return z
+        elif z % 2 == 1:
+          print('You made an odd number!')
+          return z
+         else:
+          print('What even are you??')
+          return z
  
