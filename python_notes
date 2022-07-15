@@ -165,3 +165,12 @@ def function_name():
     lambda x: x+1
     # structually -   x: thing we are feeding into the function, colon: instructions for that thing (the arguement X), the expression we want acted upon x.
     # for this. Lambda takes x, and add one.
+    
+    import os
+      os.getcwd() <-- Shows current directory
+      os.listdir() <--- lists everything in the directory
+     *Can import your own functions*
+      import sample_module as sm
+      
+  User Created Functions are very useful for cleaning up your code, makes reading your code easier.
+  
