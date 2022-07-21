@@ -50,4 +50,6 @@
   #git push <-- Favourite command, all the things are pushed to the remote git! Yay New code/features!
   
   #gitignore, create via vim .gitignore
-  #insert name of file to be ignored\j
+  #insert name of file to be ignored
+  
+  # git add .   <--- Will add EVERYTHING in your folder except things in your gitignore!
