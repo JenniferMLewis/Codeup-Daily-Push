@@ -53,3 +53,8 @@
   #insert name of file to be ignored
   
   # git add .   <--- Will add EVERYTHING in your folder except things in your gitignore!
+
+# WANT TO IGNORE ALL OF A FILE TYPE EXCEPT FOR ONE FILE?!
+  # There's a thing for that:
+#      *.pdf
+#      !except_this_one.pdf
